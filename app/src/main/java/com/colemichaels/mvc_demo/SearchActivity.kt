@@ -19,7 +19,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : BaseActivity() {
     companion object {
         const val TAG = "SearchActivity"
     }
@@ -111,14 +111,6 @@ class SearchActivity : AppCompatActivity() {
 
     private fun setupViews() {
         searchResultsRecyclerView.layoutManager = LinearLayoutManager(this)
-    }
-
-    fun showToast(s: String) {
-        Toast.makeText(this, s, Toast.LENGTH_LONG).show()
-    }
-
-    fun displayError(e: String) {
-        showToast(e)
     }
 
     interface RecyclerItemListener {

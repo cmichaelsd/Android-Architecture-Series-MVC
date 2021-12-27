@@ -21,7 +21,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.observers.DisposableObserver
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     companion object {
         const val TAG = "MainActivity"
         const val ADD_MOVIE_ACTIVITY_REQUEST_CODE = 1
@@ -47,10 +47,6 @@ class MainActivity : AppCompatActivity() {
         super.onStart()
         dataSource = LocalDataSource(application)
         getMyMoviesList()
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     override fun onStop() {
@@ -137,13 +133,5 @@ class MainActivity : AppCompatActivity() {
     fun goToAddMovieActivity(v: View) {
         val intent = Intent(this, AddMovieActivity::class.java)
         startActivityForResult(intent, ADD_MOVIE_ACTIVITY_REQUEST_CODE)
-    }
-
-    fun showToast(s: String) {
-        Toast.makeText(baseContext, s, Toast.LENGTH_LONG).show()
-    }
-
-    fun displayError(e: String) {
-        showToast(e)
     }
 }
