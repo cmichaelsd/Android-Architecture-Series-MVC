@@ -7,12 +7,10 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.colemichaels.mvc_demo.model.RemoteDataSource
-import com.colemichaels.mvc_demo.model.TmbdResponse
+import com.colemichaels.mvc_demo.model.TmdbResponse
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -30,7 +28,7 @@ class SearchActivity : BaseActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var query: String
 
-    private val searchResultsObservable: (String) -> Observable<TmbdResponse> = {
+    private val searchResultsObservable: (String) -> Observable<TmdbResponse> = {
         dataSource.searchResultsObservable(it)
     }
     private val compositeDisposable = CompositeDisposable()
@@ -73,7 +71,7 @@ class SearchActivity : BaseActivity() {
         compositeDisposable.clear()
     }
 
-    private fun displayResult(tmdbResponse: TmbdResponse) {
+    private fun displayResult(tmdbResponse: TmdbResponse) {
         progressBar.visibility = View.INVISIBLE
 
         if (tmdbResponse.totalResults == null || tmdbResponse.totalResults == 0) {
@@ -90,8 +88,8 @@ class SearchActivity : BaseActivity() {
         val searchResultsDisposable = searchResultsObservable(query)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableObserver<TmbdResponse>() {
-                override fun onNext(t: TmbdResponse) {
+            .subscribeWith(object : DisposableObserver<TmdbResponse>() {
+                override fun onNext(t: TmdbResponse) {
                     Log.d(TAG, "OnNext ${t.totalResults}")
                     displayResult(t)
                 }

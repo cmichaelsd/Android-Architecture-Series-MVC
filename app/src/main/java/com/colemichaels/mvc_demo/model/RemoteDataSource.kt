@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 open class RemoteDataSource {
-    fun searchResultsObservable(query: String): Observable<TmbdResponse> {
+    fun searchResultsObservable(query: String): Observable<TmdbResponse> {
         return RetrofitClient.moviesApi
             .searchMovie(RetrofitClient.API_KEY, query)
             .subscribeOn(Schedulers.io())

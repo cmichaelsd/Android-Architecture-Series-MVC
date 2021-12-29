@@ -3,7 +3,7 @@ package com.colemichaels.mvc_demo.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class TmbdResponse(
+data class TmdbResponse(
     @SerializedName("page")
     @Expose
     var page: Int? = null,
