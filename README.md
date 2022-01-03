@@ -6,3 +6,12 @@ The architecture is based on solutions that were used for web applications howev
 - You can not separate the controller logic from the view logic, they will always end up co-existing.
 - Because controller and view logic can not be separated testing can not properly be performed.
 - There is a limitation to how far you can separate concerns.
+
+### Technologies Used
+- RxJava
+- Room
+- Retrofit
+- Glide
+
+### Testing
+Because of the restrictions of MVC there is only minimal unit testing on the Models.
